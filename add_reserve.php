@@ -1,16 +1,20 @@
 <?php include_once($_SERVER['DOCUMENT_ROOT'] . "/database.php"); 
 
+session_start();
 
-$name = $_POST['name'];
-$description = $_POST['description'];
-$price = $_POST['price'];
+if($_SESSION['name'] != NULL){
+    header("location: index.php");
+}
+
+$id = $_SESSION['id'];
 
 
+$service = $_POST['service'];
+$dor = $_POST['dor'];
+$tor = $_POST['tor'];
 
-
-
-mysql_query("INSERT INTO services (name, description, price) VALUES
-('$name', '$description', '$price')");
+mysql_query("INSERT INTO reservations (service_id, dor, tor, customer_id, status) VALUES
+('$service', '$dor', '$tor', '$id', NULL)");
 mysql_close();
 
 
@@ -43,18 +47,16 @@ mysql_close();
                 <div id="main">
 
                     <div id="content">
-                        <div id="contact">
-                            <h2>
-                            </h2>
-                            <form action="" method="post">
-                                Service Name: <input type="text" name="name"><br>
-                                Service Description: <input type="text" name="description"> <br>       
-                                Service Price: <input type="text" name="price"><br>        
-                                
-                                <input type="submit" value="Add">
-                                
-                            </form>
-                            
+                        <div id="about">
+                            <center><h2>
+                                    Registration Complete!
+                                </h2>
+                                <form action="reserve.php" method="post">
+
+                                    <input type="submit" value="Back">
+
+                                </form>
+                            </center>                            
                             
                             <br>
                         </div>

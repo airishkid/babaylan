@@ -1,4 +1,16 @@
 <?php
+session_start();
+
+if($_SESSION['name'] != NULL){
+    header("location: index.php");
+}
+
+
+
+include_once($_SERVER['DOCUMENT_ROOT'] . "/database.php");
+
+
+
 $last_name = $_POST['last_name'];
 $first_name = $_POST['first_name'];
 $middle_initial = $_POST['middle_initial'];
@@ -10,18 +22,9 @@ $username = $_POST['username'];
 $password1 = $_POST['password1'];
 
 
-$user = "root";
-$password = "0pera=ingsystem";
-$database = "babaylan";
-mysql_connect(localhost, $user, $password);
-@mysql_select_db($database) or die("Unable to select database");
 
-
-$query = "INSERT INTO customers (id, last_name, first_name, middle_initial, birthdate, age, email, contact, username, password) VALUES
-('' ,'$last_name', '$first_name', '$middle_initial', '$birthdate', '$age', '$email', '$contact', '$username', md5('$password1'))";
-
-
-
+$query = "INSERT INTO customers (last_name, first_name, middle_initial, birthdate, age, email, contact, username, password) VALUES
+('$last_name', '$first_name', '$middle_initial', '$birthdate', '$age', '$email', '$contact', '$username', md5('$password1'))";
 
 
 mysql_query($query);

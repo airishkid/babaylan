@@ -1,3 +1,18 @@
+<?php include_once($_SERVER['DOCUMENT_ROOT'] . "/database.php"); 
+
+
+session_start();
+
+$_SESSION['name'];
+$id = $_SESSION['id'];
+
+
+
+
+?>
+
+
+
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta name="keywords" content="" />
@@ -30,25 +45,24 @@
                                 Note: Only one service per reservation.
                             </h2>
                             
+
                             
-                            <?php  
-                            $date = $_POST['date']; 
-                            $time = $_POST['time'];
-                            ?>
-                            <form action="" method="post">
-                            Last Name:<input type="text" name="last_name">
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            First Name:<input type="text" name="first_name"><br>
-                            Email:<input type="text" name="email"><br>
-                            Address: <input type="text" name="address"><br>
-                            Service:        
-                                <select name="service">
-                                    <option></option>
-                                    <option>Foot Spa</option>
-                                    <option>Manicure & Pedicure</option>
-                                    <option></option>
+                            <form action="add_reserve.php" method="post">
+                            Service:
+                            <select name = 'service'>
+                                <?php                                                    
+                                $sql="SELECT id, name FROM services";
+                                $result=mysql_query($sql);
+                                while($rows=mysql_fetch_array($result)){
+
+                                  ?>    
+                                <option value="<?php  echo $rows['id'];?>">                            
+                                <?php  echo $rows['name'];
+                                }
+                                ?></option> 
+                                                          
                                 </select><br>
-                            Date and Time: <input type="date" name="date">&nbsp;&nbsp;<input type="time" name="time"><br>
+                            Date and Time: <input type="date" name="dor">&nbsp;&nbsp;<input type="time" name="tor"><br>
                                     <input type="submit" value="Submit">
                                     </form>
                         </div>

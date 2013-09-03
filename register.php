@@ -1,15 +1,10 @@
-<?php 
+<?php
 
-$last_name = $_POST['last_name'];
-$first_name = $_POST['first_name'];
-$middle_initial = $_POST['middle_initial'];
-$username = $_POST['username'];
-$password = $_POST['password'];
-$birthdate = $_POST['birthdate'];
-$age = $_POST['age'];
-$email = $_POST['email'];
-$address = $_POST['address'];
-$contact = $_POST['contact'];
+session_start();
+
+if($_SESSION['name'] != NULL){
+    header("location: index.php");
+}
 
 
 ?>
@@ -48,14 +43,14 @@ $contact = $_POST['contact'];
                             </h2>
                             <form action="<?php 
                             
-                            if ((preg_match('#[0-9]#', $last_name || $first_name || $middle_initial)) || (preg_match('[^A-Za-z]', $age))) {
-                                echo '';
-                            }else {
-                                echo 'add_user.php';
-                            }
+//                            if ((preg_match('#[0-9]#', $last_name || $first_name || $middle_initial)) || (preg_match('[^A-Za-z]', $age))) {
+//                                echo '';
+//                            }else {
+//                                echo 'add_user.php';
+//                            }
+//                            
                             
-                            
-                            ?>" method="post">
+                            ?>add_user.php" method="post">
                             <?php 
                             
                             
@@ -66,14 +61,22 @@ $contact = $_POST['contact'];
                                 
                                 
                             Last Name: <input type="text" name="last_name">
+                                
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            
                             First Name: <input type="text" name="first_name">
+                                
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            
                             Middle Initial: <input type="text" name="middle_initial"><br><br>
+                                        
                             Username: &nbsp;<input type="text" name="username">
+                                
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            
                             Password: &nbsp;&nbsp;&nbsp;<input type="password" name="password1"><br><br>
                             Birthdate: <input type="date" name="birthdate">
+                                
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    
                             Age:
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -92,6 +95,7 @@ $contact = $_POST['contact'];
                             <br>    
                             <input type="submit" value="Submit">    
                             </form>
+
 
                         </div>
 

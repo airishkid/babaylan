@@ -5,12 +5,7 @@ session_start();
 $_SESSION['name'];
 $id = $_SESSION['id'];
 
-
-
-
-
 ?>
-
 
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -44,16 +39,16 @@ $id = $_SESSION['id'];
 								Services<br>
 							</h2>  
 <?php                                                    
-$sql="SELECT * FROM services";
+$sql="SELECT service_id, dor, tor FROM reservations where customer_id = {$id}";
 $result=mysql_query($sql);
 ?>
 <center>
 <table width="900" border="1" cellspacing="1" cellpadding="3">
 
 <tr>
-<th><strong>Name</strong></th>
-<th><strong>Description</strong></th>
-<th><strong>Price</strong></th>
+<th><strong>Service</strong></th>
+<th><strong>Time of Reservation</strong></th>
+<th><strong>Date of Reservation</strong></th>
 
 </tr>
 
@@ -62,9 +57,9 @@ while($rows=mysql_fetch_array($result)){
 ?>
 
 <tr>
-<td><? echo $rows['name']; ?></td>
-<td><? echo $rows['description']; ?></td>
-<td><? echo $rows['price']; ?></td>
+<td><? echo $rows['service_id']; ?></td>
+<td><? echo $rows['tor']; ?></td>
+<td><? echo $rows['dor']; ?></td>
 
 
 <?php
@@ -81,11 +76,7 @@ mysql_close();
 ?>
                                                     <br>
                                                     
-                                                        <center>
-                                                            <h1><a href="reserve.php">RESERVE NOW!!</a></h1>
-                                                            <h2><a href="reservation.php">VIEW RESERVATION/S</a></h2>
-                                                        </center>                                                    
-                                                    
+                                                        
                                                     
 						</div>
 						
