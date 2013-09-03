@@ -16,7 +16,7 @@
 
 
                     <div id="nav">
-                        <?php include_once 'nav.php'; ?>
+                        <?php include_once 'includes/nav.php'; ?>
                         <br class="clear" />
                     </div>
                 </div>

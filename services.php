@@ -1,3 +1,7 @@
+<?php include_once($_SERVER['DOCUMENT_ROOT'] . "/database.php"); ?>
+
+
+
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta name="keywords" content="" />
@@ -15,7 +19,7 @@
 				<div id="header">
 					
 					<div id="nav">
-					<?php include_once 'nav.php'; ?>
+					<?php include_once 'includes/nav.php'; ?>
                             
 						<br class="clear" />
 					</div>
@@ -26,10 +30,48 @@
 					<div id="content">
 						<div id="about">
 							<h2>
-								Services
-							</h2>
-							<p>
-							</p>
+								Services<br>
+							</h2>  
+ <?php                                                    
+$sql="SELECT * FROM services";
+$result=mysql_query($sql);
+?>
+<center>
+<table width="900" border="1" cellspacing="0" cellpadding="3">
+
+<tr>
+<th><strong>Name</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Price</strong></th>
+
+</tr>
+
+<?php
+while($rows=mysql_fetch_array($result)){
+?>
+
+<tr>
+<td><? echo $rows['name']; ?></td>
+<td><? echo $rows['description']; ?></td>
+<td><? echo $rows['price']; ?></td>
+
+
+<?php
+}
+?>
+
+</table>
+</td>
+</tr>
+</table>
+</center>
+<?php
+mysql_close();
+?>
+                                                    
+                                                    
+                                                    
+                                                    
 						</div>
 						
 						<br class="clear" />
